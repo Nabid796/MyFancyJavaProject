@@ -4,9 +4,45 @@ interface Shape
 }
 
 
+
+class DbConnection{
+
+    private static DbConnection instance=null;
+
+    private DbConnection(String dbUser,String dbPassword,String dbName ) { 
+    	SQLConnection connection = new SQLConnection(dbUser, dbPassword, dbName);
+   }
+
+
+	public static DbConnection getDbConnection(String dbUser,String dbPassword,String dbName) {
+      if (instance== null ) 
+		instance = new DbConnection(dbUser,dbPassword,dbName) ;                           
+
+      return instance;
+    }
+}
+
+class SQLConnection {
+	
+	String dbUser;
+	String dbPassword;
+	String dbName;
+	
+	public SQLConnection(String dbUser, String dbPassword, String dbName) {
+		super();
+		this.dbUser = dbUser;
+		this.dbPassword = dbPassword;
+		this.dbName = dbName;
+	}
+	
+
+}
+
+
 class Circle implements Shape
 {
-	 @Override
+	 
+	@Override
 	 public void draw()
 	 {
 		 System.out.println("a circle drawn");
@@ -32,11 +68,10 @@ class Rectangle implements Shape
 	 }
 }
 
-
 class ShapeFactory
 {
  
-	 public Shape getShape(String type) throws Exception
+	 public Shape getShape(Integer type) throws Exception
 	 {
 		 switch (type)
 		 {
@@ -54,14 +89,17 @@ class ShapeFactory
 
 class Painter
 {
-	 public static void main(String[] args) throws Exception
+	 public static void main(Integer[] args) throws Exception
 	 {
 		 
 		 ShapeFactory shapeFactory = new ShapeFactory();
 		 Shape circle=shapeFactory.getShape("Circle");
 		 circle.draw();
 		 Shape square = shapeFactory.getShape("Square");
-		 square.draw();
-		 
+		 square.draw(); 
+		 String dbUser="admin";
+		 String dbPassword="admin";
+		 String dbName="tesDb";
+		 DbConnection connection=DbConnection.getDbConnection(dbUser, dbPassword, dbName);
 	 }
 }
