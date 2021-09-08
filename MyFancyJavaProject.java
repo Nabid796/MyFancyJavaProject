@@ -41,7 +41,6 @@ class SQLConnection {
 
 class Circle implements Shape
 {
-	 
 	@Override
 	 public void draw()
 	 {
@@ -93,7 +92,7 @@ class Painter
 	 {
 		 
 		 ShapeFactory shapeFactory = new ShapeFactory();
-		 Shape circle=shapeFactory.getShape("Circle");
+		 Shape circle=shapeFactory.getShape("Rectangle");
 		 circle.draw();
 		 Shape square = shapeFactory.getShape("Square");
 		 square.draw(); 
