@@ -21,7 +21,7 @@ class DbConnection{
       return instance;
     }
 }
-
+//new update
 class SQLConnection {
 	
 	String dbUser;
@@ -85,7 +85,7 @@ class ShapeFactory
 		 }
 	 }
 }
-
+//new update
 class Painter
 {
 	 public static void main(Integer[] args) throws Exception
